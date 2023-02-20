@@ -20,6 +20,10 @@ const [liked, setLiked] = useState(false);
     setLiked(true)
   }
 
+  const handleNotificationNot = ()=> {
+    setLiked(false)
+  }
+
   return (
     <div className='card'>
       <div className='info'>
@@ -30,7 +34,7 @@ const [liked, setLiked] = useState(false);
       <div className="interaction">
 
       { liked ? (
-        <img src={HeartFilled} className='cardIcon' />
+        <img src={HeartFilled} className='cardIcon' onClick={handleNotificationNot}/>
     ) : (
       <img src={Heart} className='cardIcon' onClick={handleNotification} />
     )}
