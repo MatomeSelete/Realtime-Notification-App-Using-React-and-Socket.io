@@ -1,3 +1,7 @@
+
+import { useState } from 'react';
+import './Card.css';
+
 import React from 'react'
 import Heart from '../../images/heart.svg'
 import Comment from '../../images/comment.svg'
@@ -6,25 +10,35 @@ import Message from '../../images/message.svg'
 import Notification from '../../images/notification.svg'
 import Setting from '../../images/settings.svg'
 import Share from '../../images/share.svg'
-
-
-
-import './Card.css'
+import HeartFilled from '../../images/Heartfilled.svg'
 
 function Card({ post }) {
+
+const [liked, setLiked] = useState(false);
+
+  const handleNotification = ()=> {
+    setLiked(true)
+  }
+
   return (
     <div className='card'>
-        <div className='info'>
+      <div className='info'>
         <img src={post.userImg} alt='' className='userImg' />
-        <span> { post.fullname } </span>
-        </div>
-    <img src={ post.postImg } className="postImg" />
-    <div className="interraction">
-        <img src={Heart} className='cardIcon' />
-        <img src={ Comment } className='cardIcon' />
-        <img src={ Share } className='cardIcon' />
-        <img src={ Info } className='cardIcon' />
-    </div>
+        <span> {post.fullname} </span>
+      </div>
+      <img src={post.postImg} className="postImg" />
+      <div className="interaction">
+
+      { liked ? (
+        <img src={HeartFilled} className='cardIcon' />
+    ) : (
+      <img src={Heart} className='cardIcon' onClick={handleNotification} />
+    )}
+        
+        <img src={Comment} className='cardIcon' />
+        <img src={Share} className='cardIcon' />
+        <img src={Info} className='cardIcon infoIcon ' />
+      </div>
     </div>
   )
 }
